@@ -15,7 +15,7 @@
 </div>
 
 <div class="overflow-x-auto">
-  <table class="table-auto w-full text-left">
+  <table *ngIf="users.length > 0; else noUsersFound" class="table-auto w-full text-left">
     <thead>
       <tr>
         <th class="bg-gray-700 text-white px-4 py-2">Fullname</th>
@@ -40,4 +40,7 @@
       </tr>
     </tbody>
   </table>
+  <ng-template #noUsersFound>
+    <p class="text-black text-xl">No users found. Try adding a user <button class="text-blue-500 hover:text-blue-400 underline" (click)="addUser()">here</button> instead</p>
+  </ng-template>
 </div>
