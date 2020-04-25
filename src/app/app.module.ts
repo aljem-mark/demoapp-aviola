@@ -10,6 +10,7 @@ import { EditUserComponent } from './user/edit-user/edit-user.component';
 import { AddUserComponent } from './user/add-user/add-user.component';
 
 import { UserService } from './services/user.service';
+import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { UserService } from './services/user.service';
     ListUserComponent,
     EditUserComponent,
     AddUserComponent,
+    AlertDialogComponent,
   ],
   imports: [
     BrowserModule,

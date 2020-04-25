@@ -44,14 +44,5 @@ export class ListUserComponent implements OnInit {
       window.alert(error.message)
       this.errorMessage = "An error has occured while processing your request. Please try again."
     }
-
-  }
-
-  clearSuccess(): void {
-    this.successMessage = null;
-  }
-
-  clearError(): void {
-    this.errorMessage = null;
   }
 }

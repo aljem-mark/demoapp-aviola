@@ -50,8 +50,4 @@ export class AddUserComponent implements OnInit {
       this.alertMessage = "An error has occured while processing your request. Please try again."
     }
   }
-
-  clearAlert(): void {
-    this.alertMessage = null;
-  }
 }
