@@ -10,6 +10,7 @@ import { UserService } from "../../services/user.service";
 })
 export class AddUserComponent implements OnInit {
   addForm: FormGroup;
+  alertMessage: string;
 
   constructor(
     private router: Router,
@@ -35,13 +36,22 @@ export class AddUserComponent implements OnInit {
     this.router.navigate(["users"]);
   }
 
-  onSubmit(): void {
-    this.userService.addUser(this.addForm.value).subscribe((data) => {
+  async onSubmit() {
+    try {
+      await this.userService.addUser(this.addForm.value).toPromise();
+
       this.router.navigate(["users"], {
         state: {
           success: `User ${this.addForm.value.usr_fullname} successfully added.`,
         },
       });
-    });
+    } catch (error) {
+      window.alert(error.message)
+      this.alertMessage = "An error has occured while processing your request. Please try again."
+    }
+  }
+
+  clearAlert(): void {
+    this.alertMessage = null;
   }
 }

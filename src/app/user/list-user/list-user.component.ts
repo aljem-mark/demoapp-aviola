@@ -10,13 +10,15 @@ import { UserService } from "../../services/user.service";
 })
 export class ListUserComponent implements OnInit {
   users: User[];
-  alertMessage: string;
+  successMessage: string;
+  errorMessage: string;
 
   constructor(
     private router: Router,
     private userService: UserService
   ) {
-    this.alertMessage = this.router.getCurrentNavigation().extras.state?.success || null;
+    this.successMessage = this.router.getCurrentNavigation().extras.state?.success || null;
+    this.errorMessage = "An error has occured while processing your request. Please try again."
   }
 
   ngOnInit(): void {
@@ -33,14 +35,24 @@ export class ListUserComponent implements OnInit {
     this.router.navigate(["user", user._id]);
   }
 
-  deleteUser(user: User): void {
-    this.userService.deleteUser(user._id).subscribe((data) => {
+  async deleteUser(user: User) {
+    try {
+      await this.userService.deleteUser(user._id)
+
       this.users = this.users.filter((u) => u !== user);
-      this.alertMessage = "User successfully deleted."
-    });
+      this.successMessage = "User successfully deleted."
+    } catch (error) {
+      window.alert(error.message)
+      this.errorMessage = "An error has occured while processing your request. Please try again."
+    }
+
   }
 
-  clearAlert(): void {
-    this.alertMessage = null;
+  clearSuccess(): void {
+    this.successMessage = null;
+  }
+
+  clearError(): void {
+    this.errorMessage = null;
   }
 }

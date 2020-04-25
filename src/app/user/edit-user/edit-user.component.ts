@@ -11,6 +11,7 @@ import { UserService } from "../../services/user.service";
 })
 export class EditUserComponent implements OnInit {
   editForm: FormGroup;
+  alertMessage: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -55,13 +56,22 @@ export class EditUserComponent implements OnInit {
     this.router.navigate(["users"]);
   }
 
-  onSubmit(): void {
-    this.userService.updateUser(this.editForm.value).subscribe((data) => {
+  async onSubmit() {
+    try {
+      await this.userService.updateUser(this.editForm.value).toPromise()
+
       this.router.navigate(["users"], {
         state: {
           success: `User successfully updated.`,
         },
       });
-    });
+    } catch (error) {
+      window.alert(error.message)
+      this.alertMessage = "An error has occured while processing your request. Please try again."
+    }
+  }
+
+  clearAlert(): void {
+    this.alertMessage = null;
   }
 }
