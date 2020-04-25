@@ -18,7 +18,6 @@ export class ListUserComponent implements OnInit {
     private userService: UserService
   ) {
     this.successMessage = this.router.getCurrentNavigation().extras.state?.success || null;
-    this.errorMessage = "An error has occured while processing your request. Please try again."
   }
 
   ngOnInit(): void {

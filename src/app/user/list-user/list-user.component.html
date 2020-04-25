@@ -38,12 +38,12 @@
     </thead>
     <tbody>
       <tr *ngFor="let user of users">
-        <td class="border px-4 py-2">{{ user.usr_fullname }}</td>
-        <td class="border px-4 py-2">{{ user.usr_address }}</td>
-        <td class="border px-4 py-2">{{ user.usr_email }}</td>
-        <td class="border px-4 py-2">{{ user.updated_at | date:'short' }}</td>
-        <td class="border px-4 py-2">
-          <div class="flex">
+        <td class="px-4 py-2">{{ user.usr_fullname }}</td>
+        <td class="px-4 py-2">{{ user.usr_address }}</td>
+        <td class="px-4 py-2">{{ user.usr_email }}</td>
+        <td class="px-4 py-2">{{ user.updated_at | date: 'medium' }}</td>
+        <td class="px-4 py-2">
+          <div class="flex justify-end">
             <button class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded mx-1" (click)="editUser(user)">Edit</button>
             <button class="shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded mx-1" (click)="deleteUser(user)">Delete</button>
           </div>
